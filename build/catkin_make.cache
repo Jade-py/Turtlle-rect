@@ -1,0 +1,2 @@
+turtle_rect
+-DCATKIN_DEVEL_PREFIX=/home/jadepy/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/jadepy/catkin_ws/install -G Unix Makefiles

@@ -1,0 +1,8 @@
+prefix=/home/jadepy/catkin_ws/install
+
+Name: turtle_rect
+Description: Description of turtle_rect
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
