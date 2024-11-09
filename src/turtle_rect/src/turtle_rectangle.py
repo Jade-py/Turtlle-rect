@@ -10,24 +10,24 @@ class TurtleRect:
         # Initialize the ROS node
         rospy.init_node('turtle_rectangle', anonymous=True)
         
-        # Create a publisher for the turtle's velocity
+        # Publisher
         self.velocity_publisher = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
         
-        # Set the rate
+        # Rate
         self.rate = rospy.Rate(10)
         
-        # Create a Twist message
+        # Twist Message
         self.vel_msg = Twist()
 
     def move_straight(self, distance, speed=1.0):
-        # Calculate time needed to move distance at given speed
+        # Time needed to move distance at given speed
         duration = abs(distance) / speed
         
-        # Set linear velocity
+        # Linear velocity
         self.vel_msg.linear.x = speed if distance > 0 else -speed
         self.vel_msg.angular.z = 0
         
-        # Get starting time
+        # Starting time
         t0 = rospy.Time.now().to_sec()
         
         # Move for calculated duration
@@ -46,11 +46,10 @@ class TurtleRect:
         # Calculate time needed to rotate angle at given speed
         duration = abs(angle_rad) / (speed * pi / 180.0)
         
-        # Set angular velocity
+        # Angular velocity
         self.vel_msg.linear.x = 0
         self.vel_msg.angular.z = speed * pi / 180.0 if angle_degrees > 0 else -speed * pi / 180.0
         
-        # Get starting time
         t0 = rospy.Time.now().to_sec()
         
         # Rotate for calculated duration
@@ -72,12 +71,13 @@ class TurtleRect:
 
 if __name__ == '__main__':
     try:
-        # Create and run the turtle controller
+        # Creating and running the turtle controller
         turtle = TurtleRect()
-        rospy.sleep(1)  # Wait for connections to establish
+        rospy.sleep(1)  # Waiting for connections to establish
         
-        # Draw the rectangle
+        # Drawing the rectangle
         turtle.draw_rectangle()
-        
+
+    # Handling any sorts of Exceptions
     except rospy.ROSInterruptException:
         pass
